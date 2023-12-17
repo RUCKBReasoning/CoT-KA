@@ -1,11 +1,12 @@
-# Updating
-We are constantly updating, please stay tuned!
+<!-- # Updating
+We are constantly updating, please stay tuned! -->
 <!-- | date       | update    |
 | -------    | ------    |
 | 2023.08.15 | csqa,strategy_qa          | -->
-`2023.08.15`: First commit. The code and dataset for NLU tasks: csqa, strategy_qa, date_understanding, sports_understanding and aqua.
 
-`coming soon`: The code and dataset for NLG tasks.
+<!-- `2023.08.15`: First commit. The code and dataset for NLU tasks: csqa, strategy_qa, date_understanding, sports_understanding and aqua. -->
+
+<!-- `coming soon`: The code and dataset for NLG tasks. -->
 
 
 
@@ -21,7 +22,7 @@ Official implementation for the paper: Chain of Thought Prompting Elicits Knowle
 </p>
 
 # Setup
-Install and setup environment with requirements.txt. All our experiments are conducted on a single (24G) NVidia RTX 3090 GPU. 
+Install and setup the environment with requirements.txt. All our experiments are conducted on a single (24G) NVidia RTX 3090 GPU. 
 
 The data could be downloaded in [this link](https://drive.google.com/drive/folders/1sQZySYtndIw__FAF15Q3trKosYdr43Mt?usp=drive_link).
 ```
@@ -42,6 +43,10 @@ pip install -r requirements.txt
 - multi-5cot
 - multi-5cot-zeroshot
 
+For experiments related to **NLU** tasks and **NLG** tasks, we use separate scripts, `run_classify.py` and `run_generate.py`, respectively. The definition and scope of NLU and NLG tasks in this study are as described in the paper:
+> ... all commonsense reasoning benchmarks and AQUA-RAT are formulated as NLU tasks, and the other arithmetic reasoning benchmarks and Last Letter Concatenation are formulated as NLG tasks in this paper.
+
+## NLU tasks
 \<model> could be "albert" and "deberta". \<gpu_id> could be 0,1,2,..., according to the number of your gpu.
 
 ```
@@ -56,6 +61,13 @@ sh scripts/strategy_qa_multi-5cot_albert_lr5e-6.sh 0
 sh scripts/strategy_qa_multi-5cot-zeroshot_albert_lr1e-5.sh 0
 ```
 
+## NLG tasks
+For example, to reproduce the add_sub results of singlecot, you can run the commands as follows:
+
+```bash
+python run_generate.py --task add_sub --experiment singlecot --repeat True
+```
+Set \<repeat> to `True` to repeat the experiments at different seeds, the default repeat time is 5. 
 
 # Citation
 Please cite us if CoT-KA is useful in your work:
@@ -69,6 +81,3 @@ Please cite us if CoT-KA is useful in your work:
     pages = "6519--6534",
 }
 ```
-
-
-
